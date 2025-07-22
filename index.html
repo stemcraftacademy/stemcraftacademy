@@ -3,51 +3,630 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Welcome to STEM Craft Academy!</title>
+    <title>STEMCraft Academy - Empowering Teachers in STEM Education</title>
+    <meta name="description" content="STEMCraft Academy provides comprehensive teaching kits for STEM education, including ESP32 & Arduino curriculum with textbooks, workbooks, videos, and lesson plans.">
+    <meta name="keywords" content="STEM education, Arduino, ESP32, teaching kit, microcontroller, programming, engineering, computer science">
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
     <style>
+        :root {
+            --primary-color: #2563eb;
+            --secondary-color: #1e40af;
+            --accent-color: #f59e0b;
+            --success-color: #10b981;
+            --warning-color: #f59e0b;
+            --danger-color: #ef4444;
+            --dark-color: #1f2937;
+            --light-color: #f8fafc;
+            --text-color: #374151;
+            --border-color: #e5e7eb;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         body {
-            font-family: Arial, sans-serif;
-            margin: 40px;
-            background-color: #f4f4f4;
-            color: #333;
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--light-color);
+        }
+
+        .navbar {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .navbar-brand img {
+            height: 40px;
+            width: auto;
+        }
+
+        .hero-section {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 100px 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('media/STEMCraft_banar.png') center/cover;
+            opacity: 0.1;
+            z-index: 1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-subtitle {
+            font-size: 1.25rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .btn-primary {
+            background: var(--accent-color);
+            border: none;
+            padding: 12px 30px;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            background: #d97706;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(245, 158, 11, 0.3);
+        }
+
+        .section {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 3rem;
+            color: var(--dark-color);
+        }
+
+        .card {
+            border: none;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            height: 100%;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+        }
+
+        .card-header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            border-radius: 15px 15px 0 0 !important;
+            padding: 1.5rem;
             text-align: center;
         }
-        .container {
-            background-color: #fff;
-            padding: 30px;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            max-width: 800px;
-            margin: 0 auto;
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: var(--accent-color);
         }
-        h1 {
-            color: #0056b3;
+
+        .kit-card {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
         }
-        p {
-            line-height: 1.6;
+
+        .kit-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 15px;
+            margin-bottom: 1.5rem;
         }
-        .button {
-            display: inline-block;
-            background-color: #28a745;
+
+        .team-member {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .team-avatar {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
             color: white;
-            padding: 10px 20px;
-            margin-top: 20px;
-            border-radius: 5px;
-            text-decoration: none;
-            font-weight: bold;
+            font-size: 3rem;
         }
-        .button:hover {
-            background-color: #218838;
+
+        .footer {
+            background: var(--dark-color);
+            color: white;
+            padding: 50px 0 20px;
+        }
+
+        .social-links a {
+            color: white;
+            font-size: 1.5rem;
+            margin: 0 10px;
+            transition: color 0.3s ease;
+        }
+
+        .social-links a:hover {
+            color: var(--accent-color);
+        }
+
+        .badge-custom {
+            background: var(--accent-color);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.875rem;
+            font-weight: 600;
+        }
+
+        .timeline {
+            position: relative;
+            padding: 2rem 0;
+        }
+
+        .timeline-item {
+            position: relative;
+            padding-left: 3rem;
+            margin-bottom: 2rem;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 20px;
+            height: 20px;
+            background: var(--accent-color);
+            border-radius: 50%;
+        }
+
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            left: 9px;
+            top: 20px;
+            width: 2px;
+            height: calc(100% + 1rem);
+            background: var(--border-color);
+        }
+
+        .timeline-item:last-child::after {
+            display: none;
+        }
+
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .hero-section {
+                padding: 60px 0;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Welcome to STEM Craft Academy!</h1>
-        <p>From main /Crafting futures in STEM! We provide open-source coding projects, comprehensive lesson plans, and engaging educational content for a wide range of STEM technologies.</p>
-        <p>Specializing in Arduino, Raspberry Pi Pico (MicroPython), and more, our resources are designed to empower both students and educators in the exciting world of technology.</p>
-        <p>Stay tuned for our textbooks, video tutorials, and full educational solutions!</p>
-        <a href="https://youtube.com/your-channel-link" class="button" target="_blank">Visit Our YouTube Channel</a>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <img src="media/STEMCraft_logo.png" alt="STEMCraft Academy Logo">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#about">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#kits">Teaching Kits</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#team">Team</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact">Contact</a>
+                    </li>
+                </ul>
+            </div>
         </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6 hero-content">
+                    <h1 class="hero-title">STEMCraft Academy</h1>
+                    <p class="hero-subtitle">Empowering teachers to educate the next generation in STEM through comprehensive teaching kits, professional development, and cutting-edge curriculum.</p>
+                    <a href="#kits" class="btn btn-primary btn-lg">
+                        <i class="fas fa-rocket me-2"></i>Explore Teaching Kits
+                    </a>
+                </div>
+                <div class="col-lg-6 text-center">
+                    <img src="media/STEMCraft_logo.png" alt="STEMCraft Academy" class="img-fluid" style="max-width: 300px;">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="section">
+        <div class="container">
+            <h2 class="section-title">About STEMCraft Academy</h2>
+            <div class="row">
+                <div class="col-lg-8 mx-auto text-center">
+                    <p class="lead mb-4">
+                        STEMCraft Academy is dedicated to revolutionizing STEM education by providing teachers with comprehensive, 
+                        ready-to-use teaching kits that combine cutting-edge technology with proven educational methodologies.
+                    </p>
+                    <p class="mb-5">
+                        Our mission is to bridge the gap between technology and education, ensuring that every student has access 
+                        to high-quality STEM learning experiences that prepare them for the challenges of tomorrow.
+                    </p>
+                </div>
+            </div>
+            
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="card text-center">
+                        <div class="card-body">
+                            <div class="feature-icon">
+                                <i class="fas fa-graduation-cap"></i>
+                            </div>
+                            <h5 class="card-title">Professional Expertise</h5>
+                            <p class="card-text">Our team combines decades of experience in STEM education, computer science, and engineering.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card text-center">
+                        <div class="card-body">
+                            <div class="feature-icon">
+                                <i class="fas fa-tools"></i>
+                            </div>
+                            <h5 class="card-title">Comprehensive Kits</h5>
+                            <p class="card-text">Complete teaching solutions including hardware, software, curriculum, and assessment tools.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card text-center">
+                        <div class="card-body">
+                            <div class="feature-icon">
+                                <i class="fas fa-users"></i>
+                            </div>
+                            <h5 class="card-title">Teacher Support</h5>
+                            <p class="card-text">Ongoing professional development, lesson plans, and technical support for educators.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Teaching Kits Section -->
+    <section id="kits" class="section bg-light">
+        <div class="container">
+            <h2 class="section-title">Teaching Kits</h2>
+            
+            <!-- Current Kit: ESP32 & Arduino -->
+            <div class="kit-card">
+                <div class="row align-items-center">
+                    <div class="col-lg-4">
+                        <img src="media/esp32_board.png" alt="ESP32 & Arduino Kit" class="kit-image">
+                    </div>
+                    <div class="col-lg-8">
+                        <div class="d-flex align-items-center mb-3">
+                            <h3 class="mb-0 me-3">ESP32 & Arduino Teaching Kit</h3>
+                            <span class="badge-custom">Current</span>
+                        </div>
+                        <p class="lead mb-4">
+                            A comprehensive introduction to embedded systems and IoT development using the powerful ESP32 microcontroller 
+                            and Arduino programming environment.
+                        </p>
+                        
+                        <div class="row mb-4">
+                            <div class="col-md-6">
+                                <h5><i class="fas fa-book text-primary me-2"></i>What's Included:</h5>
+                                <ul class="list-unstyled">
+                                    <li><i class="fas fa-check text-success me-2"></i>Complete Textbook with 5 Chapters</li>
+                                    <li><i class="fas fa-check text-success me-2"></i>Student Workbook with Exercises</li>
+                                    <li><i class="fas fa-check text-success me-2"></i>Video Tutorials for Students</li>
+                                    <li><i class="fas fa-check text-success me-2"></i>PowerPoint Presentations</li>
+                                    <li><i class="fas fa-check text-success me-2"></i>Assessment Tools & Rubrics</li>
+                                    <li><i class="fas fa-check text-success me-2"></i>Detailed Lesson Plans</li>
+                                </ul>
+                            </div>
+                            <div class="col-md-6">
+                                <h5><i class="fas fa-cogs text-primary me-2"></i>Hardware Components:</h5>
+                                <ul class="list-unstyled">
+                                    <li><i class="fas fa-microchip text-info me-2"></i>Keyestudio ESP32 Mainboard</li>
+                                    <li><i class="fas fa-microchip text-info me-2"></i>ESP32-IO Expansion Board</li>
+                                    <li><i class="fas fa-lightbulb text-info me-2"></i>Traffic Lights Module</li>
+                                    <li><i class="fas fa-thermometer-half text-info me-2"></i>XHT11 Temperature Sensor</li>
+                                    <li><i class="fas fa-eye text-info me-2"></i>PIR Motion Sensor</li>
+                                    <li><i class="fas fa-sound text-info me-2"></i>Active Buzzer & More</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h5><i class="fas fa-graduation-cap text-primary me-2"></i>Learning Objectives:</h5>
+                                <ul class="list-unstyled">
+                                    <li><i class="fas fa-arrow-right text-warning me-2"></i>Embedded Systems Fundamentals</li>
+                                    <li><i class="fas fa-arrow-right text-warning me-2"></i>Arduino Programming</li>
+                                    <li><i class="fas fa-arrow-right text-warning me-2"></i>Sensor Integration</li>
+                                    <li><i class="fas fa-arrow-right text-warning me-2"></i>IoT Development</li>
+                                    <li><i class="fas fa-arrow-right text-warning me-2"></i>SDG-Focused Projects</li>
+                                </ul>
+                            </div>
+                            <div class="col-md-6">
+                                <h5><i class="fas fa-target text-primary me-2"></i>Target Audience:</h5>
+                                <ul class="list-unstyled">
+                                    <li><i class="fas fa-user-graduate text-info me-2"></i>High School Students</li>
+                                    <li><i class="fas fa-user-graduate text-info me-2"></i>College/University Students</li>
+                                    <li><i class="fas fa-chalkboard-teacher text-info me-2"></i>STEM Teachers</li>
+                                    <li><i class="fas fa-user-tie text-info me-2"></i>Educational Institutions</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Upcoming Kit: Raspberry Pi PICO -->
+            <div class="kit-card">
+                <div class="row align-items-center">
+                    <div class="col-lg-4">
+                        <div class="kit-image bg-light d-flex align-items-center justify-content-center">
+                            <i class="fas fa-microchip" style="font-size: 4rem; color: #666;"></i>
+                        </div>
+                    </div>
+                    <div class="col-lg-8">
+                        <div class="d-flex align-items-center mb-3">
+                            <h3 class="mb-0 me-3">Raspberry Pi PICO with MicroPython</h3>
+                            <span class="badge bg-secondary">Coming Soon</span>
+                        </div>
+                        <p class="lead mb-4">
+                            Advanced microcontroller programming using Raspberry Pi PICO and MicroPython, 
+                            designed for students ready to explore more sophisticated embedded systems.
+                        </p>
+                        
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h5><i class="fas fa-rocket text-primary me-2"></i>What to Expect:</h5>
+                                <ul class="list-unstyled">
+                                    <li><i class="fas fa-clock text-warning me-2"></i>MicroPython Programming</li>
+                                    <li><i class="fas fa-clock text-warning me-2"></i>Advanced Sensor Networks</li>
+                                    <li><i class="fas fa-clock text-warning me-2"></i>Machine Learning Integration</li>
+                                    <li><i class="fas fa-clock text-warning me-2"></i>Real-time Data Processing</li>
+                                </ul>
+                            </div>
+                            <div class="col-md-6">
+                                <h5><i class="fas fa-calendar text-primary me-2"></i>Release Timeline:</h5>
+                                <div class="timeline">
+                                    <div class="timeline-item">
+                                        <strong>Q1 2024</strong><br>
+                                        <small>Curriculum Development</small>
+                                    </div>
+                                    <div class="timeline-item">
+                                        <strong>Q2 2024</strong><br>
+                                        <small>Beta Testing</small>
+                                    </div>
+                                    <div class="timeline-item">
+                                        <strong>Q3 2024</strong><br>
+                                        <small>Full Release</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Section -->
+    <section id="team" class="section">
+        <div class="container">
+            <h2 class="section-title">Our Expert Team</h2>
+            <div class="row">
+                <div class="col-lg-4">
+                    <div class="team-member">
+                        <div class="team-avatar">
+                            <i class="fas fa-chalkboard-teacher"></i>
+                        </div>
+                        <h5>STEM Education Specialists</h5>
+                        <p>Certified educators with decades of experience in curriculum development and student engagement strategies.</p>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="team-member">
+                        <div class="team-avatar">
+                            <i class="fas fa-laptop-code"></i>
+                        </div>
+                        <h5>Computer & AI Experts</h5>
+                        <p>Software engineers and AI specialists with deep knowledge of programming, algorithms, and emerging technologies.</p>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="team-member">
+                        <div class="team-avatar">
+                            <i class="fas fa-microchip"></i>
+                        </div>
+                        <h5>Electronic Engineers</h5>
+                        <p>Hardware engineers and microcontroller specialists with expertise in embedded systems and IoT development.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section bg-light">
+        <div class="container">
+            <h2 class="section-title">Get in Touch</h2>
+            <div class="row justify-content-center">
+                <div class="col-lg-8 text-center">
+                    <p class="lead mb-5">
+                        Ready to transform your STEM education program? Contact us to learn more about our teaching kits 
+                        and how we can support your educational goals.
+                    </p>
+                    
+                    <div class="row g-4">
+                        <div class="col-md-6">
+                            <div class="card text-center">
+                                <div class="card-body">
+                                    <i class="fas fa-envelope text-primary mb-3" style="font-size: 2rem;"></i>
+                                    <h5>Email Us</h5>
+                                    <p class="mb-3">Get detailed information about our teaching kits</p>
+                                    <a href="mailto:stemcraftacademy@gmail.com" class="btn btn-primary">
+                                        stemcraftacademy@gmail.com
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card text-center">
+                                <div class="card-body">
+                                    <i class="fab fa-youtube text-danger mb-3" style="font-size: 2rem;"></i>
+                                    <h5>YouTube Channel</h5>
+                                    <p class="mb-3">Watch tutorials and project demonstrations</p>
+                                    <a href="https://youtube.com/@STEMcraftAcademy" class="btn btn-danger" target="_blank">
+                                        <i class="fab fa-youtube me-2"></i>STEMcraftAcademy
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4">
+                    <img src="media/STEMCraft_logo.png" alt="STEMCraft Academy" style="height: 50px; margin-bottom: 1rem;">
+                    <p>Empowering the next generation through innovative STEM education.</p>
+                </div>
+                <div class="col-lg-4">
+                    <h5>Quick Links</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#about" class="text-light">About Us</a></li>
+                        <li><a href="#kits" class="text-light">Teaching Kits</a></li>
+                        <li><a href="#team" class="text-light">Our Team</a></li>
+                        <li><a href="#contact" class="text-light">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-4">
+                    <h5>Connect With Us</h5>
+                    <div class="social-links">
+                        <a href="https://youtube.com/@STEMcraftAcademy" target="_blank">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                        <a href="mailto:stemcraftacademy@gmail.com">
+                            <i class="fas fa-envelope"></i>
+                        </a>
+                        <a href="#" target="_blank">
+                            <i class="fab fa-github"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <hr class="my-4">
+            <div class="row">
+                <div class="col-md-6">
+                    <p class="mb-0">&copy; 2024 STEMCraft Academy. All rights reserved.</p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <p class="mb-0">Empowering Teachers, Inspiring Students</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Smooth Scrolling -->
+    <script>
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Navbar background on scroll
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.style.background = 'rgba(37, 99, 235, 0.95)';
+            } else {
+                navbar.style.background = 'linear-gradient(135deg, #2563eb, #1e40af)';
+            }
+        });
+    </script>
 </body>
-</html>
+</html> 
